@@ -20,7 +20,7 @@ const questions =[
     ]
   },
   {
-    question: "Which is the smallest cotinent in the world?",
+    question: "Which is the smallest continent in the world?",
     answers: [
       { text: "Asia", correct: false},
       { text: "Australia", correct: true},
@@ -71,7 +71,7 @@ const selectedBtn = e.target;
 const isCorrect = selectedBtn.dataset.correct === "true";
 if (isCorrect){
   selectedBtn.classList.add("correct");
-  score++
+  score++;
 }else{
   selectedBtn.classList.add("incorrect")
 }
@@ -83,14 +83,21 @@ Array.from(answerButton.children).forEach(button => {
 });
 nextButton.style.display = "block";
 }
+function showScore(){
+resetState();
+questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`
+nextButton.innerHTML = "Play Again";
+nextButton.style.display="block"
+}
 function handleNextButton(){
   currentQuestionIndex++;
-  if(currentQuestionIndex < question.length){
+  if(currentQuestionIndex < questions.length){
     showQuestion();
   }else{
     showScore()
   }
 }
+
 nextButton.addEventListener("click", ()=>{
   if(currentQuestionIndex < questions.length){
     handleNextButton();
